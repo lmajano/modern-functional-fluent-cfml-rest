@@ -15,7 +15,6 @@ component extends="tests.resources.BaseTest" {
 							var returnedJSON = event.getRenderData().data;
 							//debug( returnedJSON );
 							expect( returnedJSON ).toHaveKeyWithCase( "error" );
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
 							expect( returnedJSON.error ).toBeFalse();
 							expect( returnedJSON ).toHaveKeyWithCase( "data" );
 							expect( returnedJSON.data ).toBeArray();
