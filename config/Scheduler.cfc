@@ -2,6 +2,7 @@ component {
 
 	/**
 	 * Configure the ColdBox Scheduler
+	 * https://coldbox.ortusbooks.com/digging-deeper/scheduled-tasks
 	 */
 	function configure(){
 		/**
@@ -12,7 +13,6 @@ component {
 		 * - setTimezone( ) : change the timezone for ALL tasks
 		 * - setExecutor( executorObject ) : change the executor if needed
 		 */
-
 
 
 		/**
