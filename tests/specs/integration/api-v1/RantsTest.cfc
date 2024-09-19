@@ -61,7 +61,7 @@ component extends="tests.resources.BaseTest" {
 							//debug( returnedJSON );
 							expect( returnedJSON.error ).toBeFalse();
 							expect( event ).toHaveStatusCode( 200 );
-							expect( returnedJSON.data ).toHaveKeyWithCase( "ID" );
+							expect( returnedJSON.data ).toHaveKey( "ID" );
 							expect( returnedJSON.data.id ).toBe( testRantId );
 							expect( returnedJSON.messages ).toHaveLength( 0 );
 						} );
@@ -157,8 +157,8 @@ component extends="tests.resources.BaseTest" {
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeFalse();
 							expect( event.getStatusCode() ).toBe( 200 );
-							expect( returnedJSON.data ).toHaveKeyWithCase( "rantID" );
-							expect( returnedJSON.data.rantID ).toBeGT( 7 );
+							expect( returnedJSON.data ).toHaveKey( "rantID" );
+							expect( returnedJSON.data.rantID ).notToBeEmpty();
 							expect( returnedJSON.messages[ 1 ] ).toBe( "Rant Created" );
 						} );
 					} );

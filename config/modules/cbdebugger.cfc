@@ -50,7 +50,7 @@ component {
 					expanded        : false,
 					// If enabled, we will profile HTTP Body content, disabled by default as it contains lots of data
 					profileHTTPBody : false
-				},
+				}
 			},
 			// ColdBox Tracer Appender Messages
 			tracers     : { enabled : true, expanded : false },
