@@ -29,7 +29,11 @@ migrate up
 
 Once you have your `.env`, your db loaded, and your `box.json` dependencies installed, you can start your server.
 
-`box start`
+```bash
+# Adobe
+run-script start:adobe
+run-script start:lucee
+```
 
 ## What can you do in the app?
 

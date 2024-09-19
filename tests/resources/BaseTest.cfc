@@ -11,8 +11,6 @@ component extends="coldbox.system.testing.BaseTestCase" appMapping="/root" {
 	function beforeAll(){
 		super.beforeAll();
 
-		var lengthTest =
-
         addMatchers( {
             toHaveStatusCode : function( expectation, args = {} ) {
                 // handle both positional and named arguments
@@ -126,7 +124,20 @@ component extends="coldbox.system.testing.BaseTestCase" appMapping="/root" {
 			return false;
 		}
 		try{
-			var length = expectation.actual.len();
+			var length = 0;
+			if ( isSimpleValue( expectation.actual ) ) {
+				length = len( expectation.actual );
+			}
+			if ( isArray( expectation.actual ) ) {
+				length = arrayLen( expectation.actual );
+			}
+			if ( isStruct( expectation.actual ) ) {
+				length = structCount( expectation.actual );
+			}
+			if ( isQuery( expectation.actual ) ) {
+				length = expectation.actual.recordcount;
+			}
+
 		} catch ( any e ){
 			expectation.message = "The length of the Item could not be found";
 			return false;
@@ -159,14 +170,6 @@ component extends="coldbox.system.testing.BaseTestCase" appMapping="/root" {
 	function afterAll(){
 		super.afterAll();
 	}
-
-	/**
-	 * Custom test reset
-	 */
-	function reset(){
-		structDelete( application, "wirebox" );
-		structDelete( application, "cbController" );
-    }
 
 	/**
 	 * Rollback all testing, called by TestBox for me

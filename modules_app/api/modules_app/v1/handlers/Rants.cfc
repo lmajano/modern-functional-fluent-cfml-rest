@@ -38,7 +38,7 @@ component extends="coldbox.system.RestHandler" {
 		}
 		var rant = rantService.getRant( rc.rantId );
 
-		if ( rant.len() ) {
+		if ( rant.recordcount ) {
 			prc.response.setData( queryGetRow( rant, 1 ) );
 		} else {
 			prc.response.setError( true );
@@ -100,7 +100,7 @@ component extends="coldbox.system.RestHandler" {
 			return;
 		}
 		var user = userService.get( rc.userId )
-		if ( !user.len() ) {
+		if ( !user.recordcount ) {
 			prc.response.setError( true );
 			prc.response.setStatusCode( 404 );
 			prc.response.addMessage( "User not found" );
@@ -148,7 +148,7 @@ component extends="coldbox.system.RestHandler" {
 			return
 		}
 		var rant = rantService.getRant( rc.rantId )
-		if ( !rant.len() ) {
+		if ( !rant.recordcount ) {
 			prc.response.setError( true );
 			prc.response.setStatusCode( 404 );
 			prc.response.addMessage( "Rant not found" );
@@ -167,7 +167,7 @@ component extends="coldbox.system.RestHandler" {
 			return;
 		}
 		var user = userService.get( rc.userId )
-		if ( !user.len() ) {
+		if ( !user.recordcount ) {
 			prc.response.setError( true );
 			prc.response.setStatusCode( 404 );
 			prc.response.addMessage( "User not found" );
