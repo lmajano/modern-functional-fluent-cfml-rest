@@ -16,7 +16,7 @@ component extends="coldbox.system.RestHandler" {
 	 * Returns a list of Rants
 	 */
 	any function index( event, rc, prc ){
-		prc.response.setData( rantService.list().map( ( rant ) => rant.getMemento() ) );
+		prc.response.setData( rantService.list().map( rant => rant.getMemento() ) );
 	}
 
 	/**

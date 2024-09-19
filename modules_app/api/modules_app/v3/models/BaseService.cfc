@@ -22,6 +22,7 @@ component accessors="true" {
 		setPrimaryKey( arguments.primaryKey );
 		setServiceName( arguments.serviceName );
 		setModuleName( arguments.moduleName );
+		return this;
 	}
 
 	/**
