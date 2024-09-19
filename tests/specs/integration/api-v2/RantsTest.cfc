@@ -14,9 +14,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = get( "/api/v2/rants" );
 							var returnedJSON = event.getRenderData().data;
 							expect( structKeyExists( returnedJSON, "error" ) ).toBeTrue();
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeFalse();
-							expect( returnedJSON ).toHaveKey( "data" );
 							expect( returnedJSON.data ).toBeArray();
 							expect( returnedJSON.data ).toHaveLengthGTE( 1 );
 						} );
@@ -31,11 +29,8 @@ component extends="tests.resources.BaseTest" {
 							var rantID       = "x"
 							var event        = get( "/api/v2/rants/#rantID#" );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 412 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe(
 								"The 'RANTID' has an invalid type, expected type is uuid"
@@ -48,11 +43,8 @@ component extends="tests.resources.BaseTest" {
 							var rantID       = createUUID();
 							var event        = get( "/api/v2/rants/#rantID#" );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 404 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toMatch( "Rant not found" );
 						} );
@@ -63,15 +55,11 @@ component extends="tests.resources.BaseTest" {
 							var testRantId   = queryExecute( "select id from rants limit 1" ).id;
 							var event        = get( "/api/v2/rants/#testRantId#" );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeFalse();
 							expect( event ).toHaveStatus( 200 );
-							expect( returnedJSON ).toHaveKey( "data" );
 							expect( returnedJSON.data ).toBeStruct();
 							expect( returnedJSON.data ).toHaveKey( "ID" );
 							expect( returnedJSON.data.id ).toBe( testRantId );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLength( 0 );
 						} );
 					} );
@@ -84,11 +72,8 @@ component extends="tests.resources.BaseTest" {
 						then( "I will get a 412 error", function(){
 							var event        = get( "/api/v2/rants/create" );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 405 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "InvalidHTTPMethod Execution of (create): GET" );
 						} );
@@ -98,11 +83,8 @@ component extends="tests.resources.BaseTest" {
 						then( "I will get a 412 error", function(){
 							var event        = post( "/api/v2/rants/create", {} );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 412 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "The 'USERID' value is required" );
 						} );
@@ -112,11 +94,8 @@ component extends="tests.resources.BaseTest" {
 						then( "I will get a 412 error", function(){
 							var event        = post( "/api/v2/rants/create", { "userID" : "" } );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 412 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "The 'USERID' value is required" );
 						} );
@@ -126,11 +105,8 @@ component extends="tests.resources.BaseTest" {
 						then( "I will get a 412 error", function(){
 							var event        = post( "/api/v2/rants/create", { "userID" : "abc" } );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 412 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe(
 								"The 'USERID' has an invalid type, expected type is uuid"
@@ -142,11 +118,8 @@ component extends="tests.resources.BaseTest" {
 						then( "I will get a 412 error", function(){
 							var event        = post( "/api/v2/rants/create", { "userID" : createUUID() } );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 412 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "The 'BODY' value is required" );
 						} );
@@ -156,11 +129,8 @@ component extends="tests.resources.BaseTest" {
 						then( "I will get a 412 error", function(){
 							var event        = post( "/api/v2/rants/create", { "userID" : createUUID(), "body" : "" } );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 412 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "The 'BODY' value is required" );
 						} );
@@ -173,11 +143,8 @@ component extends="tests.resources.BaseTest" {
 								{ "body" : "xsxswxws", "userID" : createUUID() }
 							);
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 404 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "User not found" );
 						} );
@@ -191,14 +158,10 @@ component extends="tests.resources.BaseTest" {
 								{ "body" : "xsxswxws", "userID" : "#testUserId#" }
 							);
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeFalse();
 							expect( event.getStatusCode() ).toBe( 200 );
-							expect( returnedJSON ).toHaveKey( "data" );
 							expect( returnedJSON.data ).toBeStruct();
 							expect( returnedJSON.data ).toHaveKey( "rantId" );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "Rant Created" );
 						} );
@@ -216,11 +179,8 @@ component extends="tests.resources.BaseTest" {
 						then( "I will get a 412 error", function(){
 							var event        = get( "/api/v2/rants/#testRant.id#/save" );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 405 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "InvalidHTTPMethod Execution of (save): GET" );
 						} );
@@ -230,11 +190,8 @@ component extends="tests.resources.BaseTest" {
 						then( "I will get a 412 error", function(){
 							var event        = put( "/api/v2/rants/#testRant.id#/save", {} );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 412 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "The 'USERID' value is required" );
 						} );
@@ -244,11 +201,8 @@ component extends="tests.resources.BaseTest" {
 						then( "I will get a 412 error", function(){
 							var event        = put( "/api/v2/rants/#testRant.id#/save", { "userID" : "" } );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 412 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "The 'USERID' value is required" );
 						} );
@@ -259,11 +213,8 @@ component extends="tests.resources.BaseTest" {
 							var rantID       = createUUID();
 							var event        = put( "/api/v2/rants/#rantID#/save", { "userID" : "abc" } );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 412 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe(
 								"The 'USERID' has an invalid type, expected type is uuid"
@@ -275,11 +226,8 @@ component extends="tests.resources.BaseTest" {
 						then( "I will get a 412 error", function(){
 							var event        = put( "/api/v2/rants/#testRant.id#/save", { "userID" : createUUID() } );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 412 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "The 'BODY' value is required" );
 						} );
@@ -292,11 +240,8 @@ component extends="tests.resources.BaseTest" {
 								{ "userID" : createUUID(), "body" : "" }
 							);
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 412 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "The 'BODY' value is required" );
 						} );
@@ -309,11 +254,8 @@ component extends="tests.resources.BaseTest" {
 								{ "userID" : createUUID(), "body" : "abc" }
 							);
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 412 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe(
 								"The 'RANTID' has an invalid type, expected type is uuid"
@@ -328,11 +270,8 @@ component extends="tests.resources.BaseTest" {
 								{ "body" : "xsxswxws", "userID" : createUUID() }
 							);
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 404 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "User not found" );
 						} );
@@ -345,11 +284,8 @@ component extends="tests.resources.BaseTest" {
 								{ "userID" : createUUID(), "body" : "xsxswxws" }
 							);
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 404 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "Rant not found" );
 						} );
@@ -365,12 +301,8 @@ component extends="tests.resources.BaseTest" {
 								}
 							);
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeFalse();
 							expect( event.getStatusCode() ).toBe( 200 );
-							expect( returnedJSON ).toHaveKey( "data" );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "Rant Updated" );
 						} );
@@ -384,11 +316,8 @@ component extends="tests.resources.BaseTest" {
 						then( "I will get a 412 error", function(){
 							var event        = get( "/api/v2/rants/a/delete" );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 405 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "InvalidHTTPMethod Execution of (delete): GET" );
 						} );
@@ -399,11 +328,8 @@ component extends="tests.resources.BaseTest" {
 							var event        = delete( "/api/v2/rants/delete" );
 							var returnedJSON = event.getRenderData().data;
 							debug( returnedJSON );
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 405 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe(
 								"InvalidHTTPMethod Execution of (view): DELETE"
@@ -416,11 +342,8 @@ component extends="tests.resources.BaseTest" {
 							var rantID       = "";
 							var event        = delete( "/api/v2/rants/#rantID#/delete" );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 405 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe(
 								"InvalidHTTPMethod Execution of (view): DELETE"
@@ -433,11 +356,8 @@ component extends="tests.resources.BaseTest" {
 							var rantID       = " ";
 							var event        = delete( "/api/v2/rants/#rantID#/delete" );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 412 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "The 'RANTID' value is required" );
 						} );
@@ -448,11 +368,8 @@ component extends="tests.resources.BaseTest" {
 							var rantID       = "abc";
 							var event        = delete( "/api/v2/rants/#rantID#/delete" );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 412 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe(
 								"The 'RANTID' has an invalid type, expected type is uuid"
@@ -466,11 +383,8 @@ component extends="tests.resources.BaseTest" {
 							var event        = delete( "/api/v2/rants/#rantID#/delete" );
 							var returnedJSON = event.getRenderData().data;
 							debug( returnedJSON );
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 404 );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "Rant not found" );
 						} );
@@ -486,12 +400,8 @@ component extends="tests.resources.BaseTest" {
 
 							var event        = delete( "/api/v2/rants/#testRantID#/delete" );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeFalse();
 							expect( event.getStatusCode() ).toBe( 200 );
-							expect( returnedJSON ).toHaveKey( "data" );
-							expect( returnedJSON ).toHaveKey( "messages" );
-							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "Rant Deleted" );
 						} );
