@@ -2,7 +2,7 @@
     "name":"fluentapi-boxlang",
     "app":{
         "serverHomeDirectory":".engine/boxlang",
-        "cfengine":"boxlang@1"
+        "cfengine":"boxlang"
     },
     "web":{
         "http":{
