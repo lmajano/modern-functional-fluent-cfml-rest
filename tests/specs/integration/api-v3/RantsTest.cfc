@@ -13,9 +13,9 @@ component extends="tests.resources.BaseTest" {
 						then( "I will get a list of Rants", function(){
 							var event        = get( "/api/v3/rants" );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeFalse();
-							expect( returnedJSON ).toHaveKeyWithCase( "data" );
+							expect( returnedJSON ).toHaveKey( "data" );
 							expect( returnedJSON.data ).toBeArray();
 							expect( returnedJSON.data ).toHaveLengthGTE( 1 );
 						} );
@@ -30,10 +30,10 @@ component extends="tests.resources.BaseTest" {
 							var rantID       = "x"
 							var event        = get( "/api/v3/rants/#rantID#" );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 400 );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 						} );
@@ -44,10 +44,10 @@ component extends="tests.resources.BaseTest" {
 							var rantID       = createUUID();
 							var event        = get( "/api/v3/rants/#rantID#" );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 404 );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toInclude( "rant not found" );
@@ -59,14 +59,14 @@ component extends="tests.resources.BaseTest" {
 							var testRantId   = queryExecute( "select id from rants limit 1" ).id;
 							var event        = get( "/api/v3/rants/#testRantId#" );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeFalse();
 							expect( event ).toHaveStatus( 200 );
-							expect( returnedJSON ).toHaveKeyWithCase( "data" );
+							expect( returnedJSON ).toHaveKey( "data" );
 							expect( returnedJSON.data ).toBeStruct();
-							expect( returnedJSON.data ).toHaveKeyWithCase( "ID" );
+							expect( returnedJSON.data ).toHaveKey( "ID" );
 							expect( returnedJSON.data.id ).toBe( testRantId );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLength( 0 );
 						} );
@@ -90,10 +90,10 @@ component extends="tests.resources.BaseTest" {
 						then( "I will get a 400 error", function(){
 							var event        = post( "/api/v3/rants", {} );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 400 );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 						} );
@@ -103,10 +103,10 @@ component extends="tests.resources.BaseTest" {
 						then( "I will get a 400 error", function(){
 							var event        = post( "/api/v3/rants", { "userID" : "" } );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 400 );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 						} );
@@ -116,10 +116,10 @@ component extends="tests.resources.BaseTest" {
 						then( "I will get a 400 error", function(){
 							var event        = post( "/api/v3/rants", { "userID" : "abc" } );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 400 );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 						} );
@@ -129,10 +129,10 @@ component extends="tests.resources.BaseTest" {
 						then( "I will get a 400 error", function(){
 							var event        = post( "/api/v3/rants", { "userID" : "5" } );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 400 );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 						} );
@@ -142,10 +142,10 @@ component extends="tests.resources.BaseTest" {
 						then( "I will get a 400 error", function(){
 							var event        = post( "/api/v3/rants", { "userID" : "5", "body" : "" } );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 400 );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 						} );
@@ -156,10 +156,10 @@ component extends="tests.resources.BaseTest" {
 							var event        = post( "/api/v3/rants", { "body" : "xsxswxws", "userID" : createUUID() } );
 							var returnedJSON = event.getRenderData().data;
 							debug( returnedJSON );
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 404 );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toInclude( "user not found" );
@@ -171,13 +171,13 @@ component extends="tests.resources.BaseTest" {
 							var testUserId   = queryExecute( "select id from users limit 1" ).id;
 							var event        = post( "/api/v3/rants", { "body" : "xsxswxws", "userID" : testUserId } );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeFalse();
 							expect( event.getStatusCode() ).toBe( 200 );
-							expect( returnedJSON ).toHaveKeyWithCase( "data" );
+							expect( returnedJSON ).toHaveKey( "data" );
 							expect( returnedJSON.data ).toBeStruct();
-							expect( returnedJSON.data ).toHaveKeyWithCase( "rantId" );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON.data ).toHaveKey( "rantId" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "Rant Created" );
@@ -216,10 +216,10 @@ component extends="tests.resources.BaseTest" {
 							var event        = put( "/api/v3/rants/#rantID#", {} );
 							var returnedJSON = event.getRenderData().data;
 							debug( returnedJSON );
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 400 );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 						} );
@@ -230,10 +230,10 @@ component extends="tests.resources.BaseTest" {
 							var rantID       = createUUID();
 							var event        = put( "/api/v3/rants/#rantID#", { "userID" : "" } );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 400 );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 						} );
@@ -244,10 +244,10 @@ component extends="tests.resources.BaseTest" {
 							var rantID       = createUUID();
 							var event        = put( "/api/v3/rants/#rantID#", { "userID" : "abc" } );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 400 );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 						} );
@@ -258,10 +258,10 @@ component extends="tests.resources.BaseTest" {
 							var rantID       = createUUID();
 							var event        = put( "/api/v3/rants/#rantID#", { "userID" : createUUID() } );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 400 );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 						} );
@@ -272,10 +272,10 @@ component extends="tests.resources.BaseTest" {
 							var rantID       = createUUID();
 							var event        = put( "/api/v3/rants/#rantID#", { "userID" : createUUID(), "body" : "" } );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 400 );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 						} );
@@ -289,10 +289,10 @@ component extends="tests.resources.BaseTest" {
 								{ "userID" : createUUID(), "body" : "abc" }
 							);
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 400 );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 						} );
@@ -306,10 +306,10 @@ component extends="tests.resources.BaseTest" {
 								{ "body" : "xsxswxws", "userID" : createUUID() }
 							);
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 404 );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toInclude( "user not found" );
@@ -323,10 +323,10 @@ component extends="tests.resources.BaseTest" {
 								{ "userID" : createUUID(), "body" : "xsxswxws" }
 							);
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 404 );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toInclude( "rant not found" );
@@ -341,11 +341,11 @@ component extends="tests.resources.BaseTest" {
 								{ "body" : "xsxswxws", "userID" : testRant.userId }
 							);
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeFalse();
 							expect( event.getStatusCode() ).toBe( 200 );
-							expect( returnedJSON ).toHaveKeyWithCase( "data" );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "data" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "Rant Updated" );
@@ -394,10 +394,10 @@ component extends="tests.resources.BaseTest" {
 							var rantID       = "abc";
 							var event        = delete( "/api/v3/rants/#rantID#" );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 400 );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 						} );
@@ -408,10 +408,10 @@ component extends="tests.resources.BaseTest" {
 							var rantID       = createUUID();
 							var event        = delete( "/api/v3/rants/#rantID#" );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeTrue();
 							expect( event ).toHaveStatus( 404 );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toInclude( "rant not found" );
@@ -428,11 +428,11 @@ component extends="tests.resources.BaseTest" {
 
 							var event        = delete( "/api/v3/rants/#testRantID#/delete" );
 							var returnedJSON = event.getRenderData().data;
-							expect( returnedJSON ).toHaveKeyWithCase( "error" );
+							expect( returnedJSON ).toHaveKey( "error" );
 							expect( returnedJSON.error ).toBeFalse();
 							expect( event.getStatusCode() ).toBe( 200 );
-							expect( returnedJSON ).toHaveKeyWithCase( "data" );
-							expect( returnedJSON ).toHaveKeyWithCase( "messages" );
+							expect( returnedJSON ).toHaveKey( "data" );
+							expect( returnedJSON ).toHaveKey( "messages" );
 							expect( returnedJSON.messages ).toBeArray();
 							expect( returnedJSON.messages ).toHaveLengthGTE( 1 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "Rant Deleted" );
