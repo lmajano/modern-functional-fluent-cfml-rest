@@ -1,8 +1,8 @@
 {
     "name":"fluentapi-adobe",
     "app":{
-        "serverHomeDirectory":".engine/adobe2021",
-        "cfengine":"adobe@2021"
+        "serverHomeDirectory":".engine/adobe2023",
+        "cfengine":"adobe@2023"
     },
     "web":{
         "http":{
@@ -11,5 +11,11 @@
         "rewrites":{
             "enable":"true"
         }
+    },
+	"cfconfig":{
+        "file":".cfconfig.json"
+    },
+    "scripts":{
+        "onServerInstall":"cfpm install mysql,debugger,chart"
     }
 }

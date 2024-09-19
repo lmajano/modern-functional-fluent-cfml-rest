@@ -4,6 +4,8 @@ settings.xml
 WEB-INF
 .env
 .engine/**
+bin/**
+grapher/**
 
 # logs + tests
 logs/**

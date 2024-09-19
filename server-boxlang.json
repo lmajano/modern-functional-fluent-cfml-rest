@@ -1,0 +1,15 @@
+{
+	"name":"fluentapi-boxlang",
+    "app":{
+        "serverHomeDirectory":".engine/boxlang",
+        "cfengine":"boxlang@1"
+    },
+    "web":{
+        "http":{
+            "port":"60146"
+        },
+        "rewrites":{
+            "enable":"true"
+        }
+    }
+}

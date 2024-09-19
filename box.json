@@ -20,7 +20,7 @@
     "devDependencies":{
         "relax":"*",
         "route-visualizer":"*",
-        "testbox":"*",
+        "testbox":"be",
         "commandbox-dotenv":"*",
         "commandbox-docbox":"*",
         "commandbox-cfconfig":"*",
@@ -28,12 +28,12 @@
         "commandbox-migrations":"*"
     },
     "dependencies":{
-        "coldbox":"^6.7.0+3",
-        "cbswagger":"^2.6.0+147",
-        "cbvalidation":"^3.4.0+14",
-        "cors":"^3.0.0",
-        "mementifier":"^2.8.0+4",
-        "cbdebugger":"^3.4.0+61"
+        "coldbox":"^7",
+        "cbswagger":"^3",
+        "cbvalidation":"^4",
+        "cors":"^3",
+        "mementifier":"^3",
+        "cbdebugger":"^4"
     },
     "installPaths":{
         "coldbox":"coldbox/",
@@ -52,9 +52,6 @@
     "scripts":{
         "start:lucee":"server start serverConfigFile=server-lucee.json --force",
         "start:adobe":"server start serverConfigFile=server.json --force",
-        "cfpm":"echo '\".engine/adobe2021/WEB-INF/cfusion/bin/cfpm.sh\"' | run",
-        "cfpm:install":"echo '\".engine/adobe2021/WEB-INF/cfusion/bin/cfpm.sh\" install ${1}' | run",
-        "install:2021":"run-script cfpm:install mysql,debugger,chart",
         "lint":"cflint **.cf* --text --html --json --!exitOnError --suppress",
         "format":"cfformat run config,Application.cfc,modules_app/**/*.cfc,tests/specs/**/*.cfc --overwrite --verbose",
         "format:watch":"cfformat watch config,Application.cfc,modules_app/**/*.cfc,tests/specs/**/*.cfc ./.cfformat.json",
@@ -64,18 +61,5 @@
         "test:v4":"testbox run directory=tests/specs/integration/api-v4",
         "test:v5":"testbox run directory=tests/specs/integration/api-v5",
         "test:v6":"testbox run directory=tests/specs/integration/api-v6"
-    },
-    "cfmigrations":{
-        "migrationsDirectory":"resources/database/migrations",
-        "schema":"${DB_DATABASE}",
-        "connectionInfo":{
-            "bundleName":"${DB_BUNDLENAME}",
-            "bundleVersion":"${DB_BUNDLEVERSION}",
-            "password":"${DB_PASSWORD}",
-            "connectionString":"${DB_CONNECTIONSTRING}",
-            "class":"${DB_CLASS}",
-            "username":"${DB_USER}"
-        },
-        "defaultGrammar":"AutoDiscover@qb"
     }
 }
