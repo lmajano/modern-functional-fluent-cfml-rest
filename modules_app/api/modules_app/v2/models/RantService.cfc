@@ -51,7 +51,7 @@ component singleton accessors="true" {
 			",
 			{
 				rantId : newKey,
-				body   : { value : "#body#", cfsqltype : "cf_sql_longvarchar" },
+				body   : { value : "#body#", cfsqltype : "longvarchar" },
 				userId : arguments.userId
 			},
 			{ result : "local.result" }
@@ -71,8 +71,8 @@ component singleton accessors="true" {
 			",
 			{
 				rantId      : arguments.rantId,
-				body        : { value : "#body#", cfsqltype : "cf_sql_longvarchar" },
-				updatedDate : { value : "#now#", cfsqltype : "cf_sql_timestamp" }
+				body        : { value : "#body#", cfsqltype : "longvarchar" },
+				updatedDate : { value : "#now#", cfsqltype : "timestamp" }
 			},
 			{ result : "local.result" }
 		);

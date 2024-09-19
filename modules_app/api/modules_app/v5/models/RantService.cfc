@@ -50,7 +50,7 @@ component
 				rantId : arguments.rant.getId(),
 				body   : {
 					value     : "#arguments.rant.getBody()#",
-					cfsqltype : "cf_sql_longvarchar"
+					cfsqltype : "longvarchar"
 				},
 				userId : arguments.rant.getuserId()
 			}
@@ -71,11 +71,11 @@ component
 				rantId : arguments.rant.getID(),
 				body   : {
 					value     : "#arguments.rant.getBody()#",
-					cfsqltype : "cf_sql_longvarchar"
+					cfsqltype : "longvarchar"
 				},
 				updatedDate : {
 					value     : "#arguments.rant.getUpdatedDate()#",
-					cfsqltype : "cf_sql_timestamp"
+					cfsqltype : "timestamp"
 				}
 			}
 		);

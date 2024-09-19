@@ -56,7 +56,6 @@ component extends="coldbox.system.RestHandler" {
 
 	/**
 	 * Updates an Existing Rant
-	 *
 	 */
 	function update( event, rc, prc ){
 		validateOrFail(

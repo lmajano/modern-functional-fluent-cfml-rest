@@ -39,7 +39,7 @@ component
 			",
 			{
 				rantId : newKey,
-				body   : { value : "#body#", cfsqltype : "cf_sql_longvarchar" },
+				body   : { value : "#body#", cfsqltype : "varchar" },
 				userId : arguments.userId
 			},
 			{ result : "local.result" }
@@ -59,8 +59,8 @@ component
 			",
 			{
 				rantId      : arguments.rantId,
-				body        : { value : "#body#", cfsqltype : "cf_sql_longvarchar" },
-				updatedDate : { value : "#now#", cfsqltype : "cf_sql_timestamp" }
+				body        : { value : "#body#", cfsqltype : "varchar" },
+				updatedDate : { value : "#now#", cfsqltype : "timestamp" }
 			},
 			{ result : "local.result" }
 		);
