@@ -12,40 +12,6 @@ component extends="coldbox.system.testing.BaseTestCase" appMapping="/root" {
 		super.beforeAll();
 
         addMatchers( {
-            toHaveStatusCode : function( expectation, args = {} ) {
-                // handle both positional and named arguments
-                param args.statusCode = "";
-                if ( structKeyExists( args, 1 ) ) {
-                    args.statusCode = args[ 1 ];
-                }
-                param args.message = "";
-                if ( structKeyExists( args, 2 ) ) {
-                    args.message = args[ 2 ];
-                }
-
-                if ( args.statusCode == "" ) {
-                    expectation.message = "No status code provided.";
-                    return false;
-                }
-
-                try {
-                    var statusCode = expectation.actual.getStatusCode();
-                }
-                catch ( any e ) {
-                    expectation.message = "[#expecation.actual#] does not have a getStatusCode method.";
-                    debug( expectation.actual.getResponse() );
-                    return false;
-                }
-
-                if ( statusCode != args.statusCode ) {
-                    expectation.message = "#args.message#. Received incorrect status code. Expected [#args.statusCode#]. Received [#statusCode#].";
-                    debug( expectation.actual.getResponse() );
-                    return false;
-                }
-
-                return true;
-			},
-
 			toHaveKeyWithCase : function( expectation, args = {} ) {
                 // handle both positional and named arguments
                 param args.key = "";
@@ -95,8 +61,6 @@ component extends="coldbox.system.testing.BaseTestCase" appMapping="/root" {
 				return arguments.lengthTest( expectation, args );
 			}
 		} );
-
-		getWireBox().autowire( this );
 	}
 
 	/**

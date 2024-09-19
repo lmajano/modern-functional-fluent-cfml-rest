@@ -11,5 +11,18 @@
         "rewrites":{
             "enable":"true"
         }
+    },
+	"JVM":{
+        "javaVersion":"openjdk21_jdk",
+		"args": "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8888"
+    },
+    "cfconfig":{
+        "file":".cfconfig.json"
+    },
+    "env":{
+        "BOXLANG_DEBUG":true
+    },
+    "scripts":{
+        "onServerInitialInstall":"install bx-compat,bx-unsafe-evaluate,bx-mysql"
     }
 }

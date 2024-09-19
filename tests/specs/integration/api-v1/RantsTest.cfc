@@ -28,7 +28,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = get( "/api/v1/rants/view" );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 412 );
+							expect( event ).toHaveStatus( 412 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "rantID is required" );
 						} );
 					} );
@@ -38,7 +38,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = get( "/api/v1/rants/view?rantID=abc" );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 412 );
+							expect( event ).toHaveStatus( 412 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "rantID must be a UUID" );
 						} );
 					} );
@@ -48,7 +48,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = get( "/api/v1/rants/view?rantID=#createUUID()#" );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 404 );
+							expect( event ).toHaveStatus( 404 );
 							expect( returnedJSON.messages[ 1 ] ).toMatch( "Rant not found" );
 						} );
 					} );
@@ -60,7 +60,7 @@ component extends="tests.resources.BaseTest" {
 							var returnedJSON = event.getRenderData().data;
 							//debug( returnedJSON );
 							expect( returnedJSON.error ).toBeFalse();
-							expect( event ).toHaveStatusCode( 200 );
+							expect( event ).toHaveStatus( 200 );
 							expect( returnedJSON.data ).toHaveKey( "ID" );
 							expect( returnedJSON.data.id ).toBe( testRantId );
 							expect( returnedJSON.messages ).toHaveLength( 0 );
@@ -76,7 +76,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = get( "/api/v1/rants/create" );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 405 );
+							expect( event ).toHaveStatus( 405 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "InvalidHTTPMethod Execution of (create): GET" );
 						} );
 					} );
@@ -86,7 +86,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = post( "/api/v1/rants/create" );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 412 );
+							expect( event ).toHaveStatus( 412 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "Rant body is required" );
 						} );
 					} );
@@ -96,7 +96,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = post( "/api/v1/rants/create", { "body" : "" } );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 412 );
+							expect( event ).toHaveStatus( 412 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "Rant body cannot be empty" );
 						} );
 					} );
@@ -106,7 +106,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = post( "/api/v1/rants/create", { "body" : "xsxswxws" } );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 412 );
+							expect( event ).toHaveStatus( 412 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "userID is required" );
 						} );
 					} );
@@ -116,7 +116,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = post( "/api/v1/rants/create", { "body" : "xsxswxws", "userID" : "" } );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 412 );
+							expect( event ).toHaveStatus( 412 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "userID must be a UUID" );
 						} );
 					} );
@@ -126,7 +126,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = post( "/api/v1/rants/create", { "body" : "xsxswxws", "userID" : "abc" } );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 412 );
+							expect( event ).toHaveStatus( 412 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "userID must be a UUID" );
 						} );
 					} );
@@ -139,7 +139,7 @@ component extends="tests.resources.BaseTest" {
 							);
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 404 );
+							expect( event ).toHaveStatus( 404 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "User not found" );
 						} );
 					} );
@@ -172,7 +172,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = post( "/api/v1/rants/save" );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 412 );
+							expect( event ).toHaveStatus( 412 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "Rant body is required" );
 						} );
 					} );
@@ -182,7 +182,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = post( "/api/v1/rants/save", { "body" : "" } );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 412 );
+							expect( event ).toHaveStatus( 412 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "Rant body cannot be empty" );
 						} );
 					} );
@@ -192,7 +192,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = post( "/api/v1/rants/save", { "body" : "abc" } );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 412 );
+							expect( event ).toHaveStatus( 412 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "rantID is required" );
 						} );
 					} );
@@ -202,7 +202,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = post( "/api/v1/rants/save", { "body" : "abc", "rantID" : "" } );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 412 );
+							expect( event ).toHaveStatus( 412 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "rantID must be a UUID" );
 						} );
 					} );
@@ -212,7 +212,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = post( "/api/v1/rants/save", { "body" : "abc", "rantID" : "abc" } );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 412 );
+							expect( event ).toHaveStatus( 412 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "rantID must be a UUID" );
 						} );
 					} );
@@ -225,7 +225,7 @@ component extends="tests.resources.BaseTest" {
 							);
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 404 );
+							expect( event ).toHaveStatus( 404 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "Rant not found" );
 						} );
 					} );
@@ -239,7 +239,7 @@ component extends="tests.resources.BaseTest" {
 							);
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 412 );
+							expect( event ).toHaveStatus( 412 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "userID is required" );
 						} );
 					} );
@@ -257,7 +257,7 @@ component extends="tests.resources.BaseTest" {
 							);
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 412 );
+							expect( event ).toHaveStatus( 412 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "userID must be a UUID" );
 						} );
 					} );
@@ -275,7 +275,7 @@ component extends="tests.resources.BaseTest" {
 							);
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 412 );
+							expect( event ).toHaveStatus( 412 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "userID must be a UUID" );
 						} );
 					} );
@@ -293,7 +293,7 @@ component extends="tests.resources.BaseTest" {
 							);
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 404 );
+							expect( event ).toHaveStatus( 404 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "User not found" );
 						} );
 					} );
@@ -325,7 +325,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = get( "/api/v1/rants/delete" );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 405 );
+							expect( event ).toHaveStatus( 405 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "InvalidHTTPMethod Execution of (delete): GET" );
 						} );
 					} );
@@ -335,7 +335,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = post( "/api/v1/rants/delete" );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 405 );
+							expect( event ).toHaveStatus( 405 );
 							expect( returnedJSON.messages[ 1 ] ).toBe(
 								"InvalidHTTPMethod Execution of (delete): POST"
 							);
@@ -347,7 +347,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = delete( "/api/v1/rants/delete", { "body" : "abc" } );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 412 );
+							expect( event ).toHaveStatus( 412 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "rantID is required" );
 						} );
 					} );
@@ -357,7 +357,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = delete( "/api/v1/rants/delete", { "rantID" : "" } );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 412 );
+							expect( event ).toHaveStatus( 412 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "rantID must be a UUID" );
 						} );
 					} );
@@ -367,7 +367,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = delete( "/api/v1/rants/delete", { "rantID" : "abc" } );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 412 );
+							expect( event ).toHaveStatus( 412 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "rantID must be a UUID" );
 						} );
 					} );
@@ -377,7 +377,7 @@ component extends="tests.resources.BaseTest" {
 							var event        = delete( "/api/v1/rants/delete", { "rantID" : "#createUUID()#" } );
 							var returnedJSON = event.getRenderData().data;
 							expect( returnedJSON.error ).toBeTrue();
-							expect( event ).toHaveStatusCode( 404 );
+							expect( event ).toHaveStatus( 404 );
 							expect( returnedJSON.messages[ 1 ] ).toBe( "Rant not found" );
 						} );
 					} );
