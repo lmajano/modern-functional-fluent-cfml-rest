@@ -28,7 +28,7 @@
         "commandbox-migrations":"*"
     },
     "dependencies":{
-        "coldbox":"^7",
+        "coldbox":"be",
         "cbswagger":"^3",
         "cbvalidation":"^4",
         "cors":"^3",
