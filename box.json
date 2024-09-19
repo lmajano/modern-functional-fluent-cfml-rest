@@ -51,8 +51,7 @@
     },
     "scripts":{
         "start:adobe":"server start serverConfigFile=server-adobe.json --force",
-		"start:boxlang":"server start serverConfigFile=server-boxlang.json --force",
-        "start:lucee":"server start serverConfigFile=server-lucee.json --force",
+		"start:boxlang":"server start serverConfigFile=server-boxlang.json --force --debug",
         "lint":"cflint **.cf* --text --html --json --!exitOnError --suppress",
         "format":"cfformat run config,Application.cfc,modules_app/**/*.cfc,tests/specs/**/*.cfc --overwrite --verbose",
         "format:watch":"cfformat watch config,Application.cfc,modules_app/**/*.cfc,tests/specs/**/*.cfc ./.cfformat.json",

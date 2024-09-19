@@ -1,5 +1,5 @@
 {
-	"name":"fluentapi-boxlang",
+    "name":"fluentapi-boxlang",
     "app":{
         "serverHomeDirectory":".engine/boxlang",
         "cfengine":"boxlang@1"
@@ -12,9 +12,9 @@
             "enable":"true"
         }
     },
-	"JVM":{
+    "JVM":{
         "javaVersion":"openjdk21_jdk",
-		"args": "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8888"
+        "args":"-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8888"
     },
     "cfconfig":{
         "file":".cfconfig.json"
