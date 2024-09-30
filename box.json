@@ -33,7 +33,8 @@
         "cbvalidation":"^4",
         "cors":"^3",
         "mementifier":"^3",
-        "cbdebugger":"^4"
+        "cbdebugger":"^4",
+        "cbSwaggerUI":"^1.2.1"
     },
     "installPaths":{
         "coldbox":"coldbox/",
@@ -44,14 +45,15 @@
         "route-visualizer":"modules/route-visualizer/",
         "cors":"modules/cors/",
         "mementifier":"modules/mementifier/",
-        "cbdebugger":"modules/cbdebugger/"
+        "cbdebugger":"modules/cbdebugger/",
+        "cbSwaggerUI":"modules/cbSwaggerUI/"
     },
     "testbox":{
         "runner":"http://localhost:60146/tests/runner.cfm"
     },
     "scripts":{
         "start:adobe":"server start serverConfigFile=server-adobe.json --force",
-		"start:boxlang":"server start serverConfigFile=server-boxlang.json --force --debug",
+        "start:boxlang":"server start serverConfigFile=server-boxlang.json --force --debug",
         "lint":"cflint **.cf* --text --html --json --!exitOnError --suppress",
         "format":"cfformat run config,Application.cfc,modules_app/**/*.cfc,tests/specs/**/*.cfc --overwrite --verbose",
         "format:watch":"cfformat watch config,Application.cfc,modules_app/**/*.cfc,tests/specs/**/*.cfc ./.cfformat.json",
